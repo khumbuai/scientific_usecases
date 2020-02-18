@@ -64,7 +64,7 @@ boundary units, then the information flow bringing together information about ai
 2. According to the authors **switching to dimensionless quantities** turns out to lead to significantly **improved results**. 
 This approach is used for differential equations in different contexts and often leads to further insights or simplifications. In the current case
 the authors replace the target quantities v<sub>x</sub>, v<sub>y</sub> and p by 
-v<sub>x</sub>/v<sub>x0</sub>, v<sub>y</sub>/v<sub>y0</sub> and p/|v<sub>x0</sub><sup>2</sup>+v<sub>y0</sub><sup>2</sup>| where v<sub>x0</sub>, v<sub>y0</sub> refer to the freestream conditions.
+v<sub>x</sub>/v<sub>0</sub>, v<sub>y</sub>/v<sub>0</sub> and p/v<sub>0</sub> where v<sub>0</sub> = | v<sub>x0</sub><sup>2</sup>+v<sub>y0</sub><sup>2</sup> |<sup>1/2</sup> and v<sub>x0</sub>, v<sub>y0</sub> refer to the freestream conditions.
 Especially the rescaling of the pressure turns out to be crucial. While it is not obvious that this approach is in general advantageous, it is in any case a trick which should be kept in mind.
 In addition the mean pressure is subtracted of the pressure values so that its mean becomes 0.
 3. **Normalizing** the values of the 3-channels (for input and target tensors) to the range [-1,1] by **dividing** the sample tensors **by the biggest absolute value** appearing in the dataset for the respective channel turns out
