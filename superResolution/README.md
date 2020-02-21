@@ -1,6 +1,6 @@
 
 
-#Image Super-Resolution with WDSR network
+# Image Super-Resolution with WDSR network
 Code and content of this repository are based on a clone of https://github.com/krasserm/super-resolution which is 
 concerned with the super resolution method presented in 
 [Wide Activation for Efficient and Accurate Image Super-Resolution](https://arxiv.org/abs/1808.08718) (winner in the realistic tracks 
