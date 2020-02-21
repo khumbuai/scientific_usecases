@@ -9,7 +9,10 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import tensorflow as tf
 
+
+path_to_pb_file = "../data/flow_model.pb"
 
 def weights_init(m):
     classname = m.__class__.__name__
@@ -125,3 +128,43 @@ class TurbNetD(nn.Module):
         h = self.c4(F.leaky_relu(h, negative_slope=0.2))
         h = F.sigmoid(h)
         return h
+
+
+# https://www.tensorflow.org/guide/migrate
+# https://www.tensorflow.org/api_docs/python/tf/graph_util/import_graph_def?version=stable
+def wrap_frozen_graph(graph_def, inputs, outputs, print_graph=False):
+    def _imports_graph_def():
+        tf.compat.v1.import_graph_def(graph_def, name="")
+
+    wrapped_import = tf.compat.v1.wrap_function(_imports_graph_def, [])
+    import_graph = wrapped_import.graph
+
+    print("-" * 50)
+    print("Frozen model layers: ")
+    layers = [op.name for op in import_graph.get_operations()]
+    count = 0
+    if print_graph == True:
+        for layer in layers:
+            print(layer)
+            count+=1
+    print('number of layers', len(layers))
+
+    return wrapped_import.prune(
+        tf.nest.map_structure(import_graph.as_graph_element, inputs),
+        tf.nest.map_structure(import_graph.as_graph_element, outputs))
+
+
+def build_graph():
+    # Load frozen graph using TensorFlow 1.x functions
+    with tf.io.gfile.GFile(path_to_pb_file , "rb") as f:
+        graph_def = tf.compat.v1.GraphDef()
+        loaded = graph_def.ParseFromString(f.read())
+
+    # Wrap frozen graph to ConcreteFunctions
+    frozen_func = wrap_frozen_graph(graph_def=graph_def,
+                                    inputs=["model_inputs:0"],
+                                    outputs=["model_outputs:0"],
+                                    print_graph=False)
+
+    return frozen_func
+
