@@ -15,7 +15,7 @@ but perhaps the more problematic point is given by the fact that the **relevant 
 ### Idea of ElemNet
 The basic idea of ElemNet is to train a neural net which shall **learn the relevant features** for predicting material properties by using
 only the **material composition as input**. More specifically, the model used in this work was trained to **predict the formation energy** (enthalpy) from elemental compositions.
-![ElemNet vs classical approaches](../images/oqmd_approach.png)
+![ElemNet vs classical approaches](images/oqmd_approach.png)
 ## Model
 The model architecture is very simple: The pretrained ElemNet model provided for inference consists of **17 fully-connected layers** (more than 4500000 parameters) with Relu activation and several "very strong" (dropout rates in [0.7,0.9]) **Dropout layers** in between. 
 The model **input has shape (number of samples,86)** where 86 corresponds to the number of elements considered for the compositions of materials:
