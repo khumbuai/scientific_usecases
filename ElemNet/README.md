@@ -5,7 +5,7 @@ ElemNet was introduced in the papers
 
 2. Dipendra Jha, Kamal Choudhary, Francesca Tavazza, Wei-keng Liao, Alok Choudhary, Carelyn Campbell, Ankit Agrawal, "Enhancing materials property prediction by leveraging computational and experimental data using deep transfer learning," Nature Communications, 10, Article number: 5316 (2019) [DOI: https:10.1038/s41467-019-13297-w] [<a href="https://www.nature.com/articles/s41467-019-13297-w">PDF</a>].
 
-and the original repository which deals with the model can be found [here](https://github.com/NU-CUCIS/ElemNet/tree/master/elemnet)
+and the original repository which deals with the model in more detail can be found [here](https://github.com/NU-CUCIS/ElemNet/tree/master/elemnet)
 
 ## Introduction to the problem
 Predicting properties of materials with the help of machine learning is a very interesting and popular topic. 
