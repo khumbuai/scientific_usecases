@@ -2,24 +2,33 @@
 This repo is based on a copy of [RUL_NET](https://github.com/LahiruJayasinghe/RUL-Net). A notebook for model inference and training is added.
 The code of the notebook is compatible with tensorflow 2.
 <br>
-Deep learning approach for estimation of Remaining Useful Life (RUL) of an engine
-This repo is dedicated to new architectures for estimating RUL using CMAPSS dataset and PHM08 prognostic challenge dataset
-The datasets are included in this repo or can be donwloaded from: https://ti.arc.nasa.gov/tech/dash/groups/pcoe/prognostic-data-repository/#turbofan 
+The repo deals with a state-of-the art deep learning model for estimating Remaining Useful Life (RUL) of an engine.
+The dataset used for testing is CMAPSS which was introduced for PHM08 prognostic challenge.
+The datasets can be donwloaded from: https://ti.arc.nasa.gov/tech/dash/groups/pcoe/prognostic-data-repository/#turbofan 
 
-For more details, please see our [Arxiv paper](https://arxiv.org/pdf/1810.05644.pdf).
+For further details, please see the paper [Arxiv paper](https://arxiv.org/pdf/1810.05644.pdf) related to the original repo.
 
-## System Model
+## Model
 ![Screenshot](screenshots/system_model.PNG)
+The model takes a batch of shape **(batch_size,sequence_length,24)** where 24 corresponds to the number **input features (sensor values plus settings)** and the **sequence length is set to 100** (empirically determined).
+<br>
+Since the input and output time series on the other hand do not have a fixed length, the input for training and inference must be provided cleverly (which will be discussed later).
+<br>
+The **processing steps** of the model can be summarized as follows:
+<br>
 
-## Dependencies 
+1. Feature extraction by temporal convolutions (Conv1d) and MaxPooling (==> temporal dimension is downsampled)
+2. Upsampling of time dimension by first flattening the units:
+**(batch_size,time,feats)==>(batch_size,time*feats)**,
+applying a Dense Layer on the flattend array with appropriate output units so that a sequence of shape (batch_size,100,new_feats_dim) can be formed again.
+3. Further feature extraction and information propagation along the time axis by LSTM layers.
+4. Processing of the feature information for each time step separately by a sequence of Dense layers
 
-tensorflow 1.8
 
-numpy 1.14.4
+For regularization classical Dropout layers are used.
+<br>
+For further details the related [Arxiv paper](https://arxiv.org/pdf/1810.05644.pdf) or the implementation of the RulModel class in the provided Rul_model.ipynb can be checked.
 
-pandas 0.20.3
-
-scikit-learn 0.19.1
 
 ## Dataset discription
 The main and largest dataset is the CMAPSS dataset. It contain four subdatasets called FD001, FD002, FD003, and FD004
@@ -70,7 +79,7 @@ It’s clear that the training labels always goes to zero RUL but testing labels
 
 ### Citation
 
-If this is useful for your work, please cite our [Arxiv paper](https://arxiv.org/pdf/1810.05644.pdf):
+If this is useful for your work, please cite the [Arxiv paper](https://arxiv.org/pdf/1810.05644.pdf):
 
 ```bibtex
 @article{jayasinghe2018temporal,
