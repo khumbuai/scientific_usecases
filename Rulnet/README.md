@@ -13,8 +13,6 @@ For further details, please see the paper [Arxiv paper](https://arxiv.org/pdf/18
 <br>
 The model takes a batch of shape **(batch_size,sequence_length,24)** where 24 corresponds to the number **input features (sensor values plus settings)** and the **sequence length is set to 100** (empirically determined).
 <br>
-Since the input and output time series on the other hand do not have a fixed length, the input for training and inference must be provided cleverly (which will be discussed later).
-<br>
 The **processing steps** of the model can be summarized as follows:
 <br>
 
@@ -28,7 +26,7 @@ applying a Dense Layer on the flattend array with appropriate output units so th
 
 For regularization classical Dropout layers are used.
 <br>
-For further details the related [Arxiv paper](https://arxiv.org/pdf/1810.05644.pdf) or the implementation of the RulModel class in the provided Rul_model.ipynb can be checked.
+For further details the related [Arxiv paper](https://arxiv.org/pdf/1810.05644.pdf) or the implementation of the RulModel class in the provided notebook can be checked.
 
 
 ## Dataset discription
