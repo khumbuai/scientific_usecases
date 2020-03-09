@@ -12,7 +12,7 @@ For ResUNet special building blocks are designed to aggregate information on dif
  ## Model 
  ### ResUNet Block
  
-![ResUnet](resunet.png)
+![ResUnet](data/resunet.png)
 <br>
 In contrast to standard Resnet blocks, Resunet uses blocks with multiple (usually 4) parallel branches which are all merged
 in the end by addition. The branches differ from each other by a varying dilation sizes d<sub>i</sub> used for the 
@@ -21,7 +21,7 @@ to a larger receptive field while keeping the necessary parameters low. The idea
 idea to aggregate features of different scales at the same time while in case of a sequential processing with fixed kernel parameters (kernel size,
 stride, dilation) several pooling operations would be necessary in between to cover a comparable receptive field.
  ### Encoder and Decoder structure
-![ResUnet](ResImg.png)
+![ResUnet](data/ResImg.png)
 <br>
 The encoder of Resunet consist of a sequence of residual blocks (introduced in the previous section) followed by a downsampling layer
 implemented by a 2-dim. Convolution with stride 2. 
@@ -38,5 +38,5 @@ pixels related to defects with the correct defect label. Hence, the model output
  pixels are filled with 0.
 The pictures below show 2 sample steel sheets which are shown 4 times in a row with respectively 1 of the 4 related target masks placed over it. 
 Thus, e.g. the first sheet has errors of type 3 (marked in green) and of type 4 (marked in purple) while the second one has only type 4 defects.
-![steel](steel.png)
-![steel1](steel1.png)
+![steel](data/steel.png)
+![steel1](data/steel1.png)
