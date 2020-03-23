@@ -3,6 +3,8 @@ Code and content of this repository are based on a clone of https://github.com/k
 concerned with the super resolution method presented in 
 [Wide Activation for Efficient and Accurate Image Super-Resolution](https://arxiv.org/abs/1808.08718) (winner in the realistic tracks 
 of the [NTIRE 2018](http://www.vision.ee.ethz.ch/ntire18/) super-resolution challenge) and other super resolution techniques.
+<br>
+The notebook [evaluation.ipynb](evaluation.ipynb) can be used to test the pretrained WDSR model.
 
 
 
