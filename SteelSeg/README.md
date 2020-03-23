@@ -24,14 +24,14 @@ stride, dilation) several pooling operations would be necessary in between to co
 ![ResUnet](data/ResImg.png)
 <br>
 The encoder of Resunet consist of a sequence of residual blocks (introduced in the previous section) followed by a downsampling layer
-implemented by a 2-dim. Convolution with stride 2. 
+implemented by a 2-dim. convolution with stride 2. 
 <br>
 The decoder, on the other hand, is a sequence of residual blocks followed by upsampling layers 
-(consisting of a 2-dim Convolution (kernel size 1x1) for reducing the channel number by fact. 2 and a simple upsampling operation) and a process where
+(consisting of a 2-dim convolution (kernel size 1x1) for reducing the channel number by fact. 2 and a simple upsampling operation) and a process where
 corresponding encoder and decoder outputs are combined. The combination process takes place by concatenating the outputs and by processing them by 
-a 1x1 Convolution.
+a 1x1 convolution.
 # Dataset
-To train and test the model we use the image data of the [Severstal: Steel Defect Detection]('https://www.kaggle.com/c/severstal-steel-defect-detection/overview')
+To train and test the model we use the image data of the [Severstal Steel Defect Detection](https://www.kaggle.com/c/severstal-steel-defect-detection/overview)
 competition. The dataset consists of images showing steel sheet surfaces which partly have one or more of 4 different defect types. The aim is to mark the image
 pixels related to defects with the correct defect label. Hence, the model output and targets have shape (batch_size,img_height,img_width,4) where the 4 channels
  correspond to the 4 error types: The k-th target channel (k in {0,1,2,3}) contains a binary masks which marks pixels related to defect of type k with value 1 while the remaining 
