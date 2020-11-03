@@ -11,7 +11,7 @@ A Jupyter notebook for [training](elemnet/train.ipynb) was added and a notebook 
 
 ## Introduction to the problem
 Predicting properties of materials with the help of machine learning is a very interesting and popular topic. 
-Classical approaches are often based on **feature engineering** and their success is therefor often strongly depends on domain knowledge. 
+Classical approaches are often based on **feature engineering** and their success therefore often depends on domain knowledge. 
 This leads to at least two obvious **problems**: Finding and implementing the right features is usually connected with **a lot of work** 
 but perhaps the more problematic point is given by the fact that the **relevant physical features** are typically **unknown**.
 ### Idea of ElemNet
